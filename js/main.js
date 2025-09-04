@@ -167,13 +167,6 @@ function setupSkillsAnimation() {
 }
 
     
-    // Real-time validation
-    const inputs = contactForm.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => clearFieldError(input));
-    });
-}
 
 // Form validation
 function validateForm(data) {
