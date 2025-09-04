@@ -166,7 +166,55 @@ function setupSkillsAnimation() {
     }
 }
 
-    
+ // Form handling with AJAX for a seamless user experience
+function setupFormHandling() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // This is KEY to preventing the page from redirecting
+
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('.submit-btn');
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.btn-text').style.display = 'none';
+        submitBtn.querySelector('.btn-loading').style.display = 'inline';
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Success!
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                contactForm.reset();
+            } else {
+                // Server responded with an error
+                return response.json().then(data => {
+                    // Try to get a specific error message from the server, or use a default one
+                    const errorMessage = data.message || 'Sorry, there was a server error. Please try again.';
+                    throw new Error(errorMessage);
+                });
+            }
+        })
+        .catch(error => {
+            // Network error or error thrown from the .then block
+            showNotification(error.toString(), 'error');
+        })
+        .finally(() => {
+            // Reset button state regardless of success or failure
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.btn-text').style.display = 'inline';
+            submitBtn.querySelector('.btn-loading').style.display = 'none';
+        });
+    });
+}
 
 // Form validation
 function validateForm(data) {
