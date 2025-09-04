@@ -13,7 +13,6 @@ function initializePortfolio() {
     setupHeaderScroll();
     setupSmokeAnimation();
     setupSkillsAnimation();
-    setupFormHandling();
     setupScrollAnimations();
     setupLazyLoading();
 }
@@ -167,53 +166,6 @@ function setupSkillsAnimation() {
     }
 }
 
-// Form handling with validation and submission
-function setupFormHandling() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (!contactForm) return;
-    
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitBtn = this.querySelector('.submit-btn');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-        
-        // Get form data
-        const formData = new FormData(this);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message')
-        };
-        
-        // Basic validation
-        if (!validateForm(data)) return;
-        
-        // Show loading state
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-        
-        try {
-            // Simulate form submission (replace with your actual endpoint)
-            await simulateFormSubmission(data);
-            
-            // Success feedback
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            contactForm.reset();
-            
-        } catch (error) {
-            // Error feedback
-            showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
-            console.error('Form submission error:', error);
-            
-        } finally {
-            // Reset button state
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-        }
-    });
     
     // Real-time validation
     const inputs = contactForm.querySelectorAll('input, textarea');
