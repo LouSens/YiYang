@@ -13,6 +13,7 @@ function initializePortfolio() {
     setupHeaderScroll();
     setupSmokeAnimation();
     setupSkillsAnimation();
+    setupFormHandling();
     setupScrollAnimations();
     setupLazyLoading();
 }
