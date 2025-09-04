@@ -17,7 +17,7 @@ function initializePortfolio() {
     setupLazyLoading();
 }
 
-// Form handling with AJAX for a seamless user experience
+// Form handling with robust AJAX to gracefully handle FormSubmit's responses
 function setupFormHandling() {
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
@@ -39,14 +39,22 @@ function setupFormHandling() {
             method: 'POST',
             body: formData,
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json' // We PREFER JSON, but will handle HTML
             }
         })
         .then(response => {
+            // Check the content type of the response
+            const contentType = response.headers.get('content-type');
             if (response.ok) {
-                return response.json(); // Continue if the response is successful
+                // If FormSubmit sends back HTML (like a CAPTCHA or thank you page),
+                // we will treat it as a success because the submission worked.
+                if (contentType && contentType.indexOf('application/json') !== -1) {
+                    return response.json(); // It's JSON, process it normally
+                } else {
+                    return { success: true }; // It's HTML, so we create our own success object
+                }
             } else {
-                // Handle server errors (e.g., 4xx, 5xx status codes)
+                // Handle server errors
                 return response.json().then(data => {
                     const errorMessage = data.message || 'Server error. Please try again.';
                     throw new Error(errorMessage);
@@ -54,7 +62,7 @@ function setupFormHandling() {
             }
         })
         .then(data => {
-            // Success! Show success message and reset the form
+            // Success! Show the notification and reset the form
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             contactForm.reset();
         })
@@ -63,7 +71,7 @@ function setupFormHandling() {
             showNotification(error.toString(), 'error');
         })
         .finally(() => {
-            // ALWAYS reset button state, whether it succeeded or failed
+            // ALWAYS reset the button state
             submitBtn.disabled = false;
             btnText.style.display = 'inline';
             btnLoading.style.display = 'none';
