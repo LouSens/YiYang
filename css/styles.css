@@ -1178,74 +1178,102 @@ footer {
     }
 }
 
-/* === NEW HERO SECTION STYLES === */
+/* === NEW ZYRA-STYLE HERO SECTION === */
+
+.hero {
+    min-height: 100vh;
+    display: flex; /* Use Flexbox to align content */
+    align-items: center; /* Vertically center the left-aligned content */
+    position: relative; /* Needed for absolute positioning of social icons */
+    padding: 0 2rem;
+}
+
+.hero-content-left {
+    text-align: left; /* Align text to the left */
+    max-width: 800px;
+}
 
 /* Wrapper for slide-up text animation */
 .animated-text {
-    overflow: hidden; /* This is crucial for the slide-up effect */
+    overflow: hidden;
     padding-bottom: 0.25rem;
 }
 
-/* Initial state for animated text */
-.hero-content .animated-text h1,
-.hero-content .animated-text h2 {
+.hero-content-left h1,
+.hero-content-left h2 {
     transform: translateY(110%);
     animation: slideUp 0.8s ease-out forwards;
 }
 
-/* Stagger the animation delays */
-.hero-content .animated-text:nth-of-type(1) h1 {
+.hero-content-left h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(45deg, #ffffff, #b3b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation-delay: 0.5s;
 }
-.hero-content .animated-text:nth-of-type(2) h2 {
+
+.hero-content-left h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
     animation-delay: 0.7s;
 }
 
-/* Keyframe animation for sliding up */
 @keyframes slideUp {
     to {
         transform: translateY(0);
     }
 }
 
-/* Update button styles to accommodate icons */
-.cta-button {
-    display: inline-flex; /* Use flex to align text and icon */
-    align-items: center;
-    gap: 0.75rem; /* Space between text and icon */
-}
-
-/* Social icons container */
-.hero-socials {
+.hero-buttons {
     display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-top: 5rem; /* Space above the icons */
+    gap: 1rem;
+    justify-content: flex-start; /* Align buttons to the left */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 1.2s forwards;
 }
 
-/* Individual social icon links */
-.hero-socials a {
-    color: var(--text-secondary); /* Default monochrome style */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Social icons positioned in the bottom-right */
+.hero-socials-corner {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column; /* Stack icons vertically */
+    gap: 1.5rem;
+}
+
+.hero-socials-corner a {
+    color: var(--text-secondary);
     font-size: 1.5rem;
     transition: var(--transition);
-    opacity: 0; /* Start hidden for fade-in animation */
+    opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Stagger the animation for social icons */
-.hero-socials a:nth-child(1) { animation-delay: 1.0s; }
-.hero-socials a:nth-child(2) { animation-delay: 1.1s; }
-.hero-socials a:nth-child(3) { animation-delay: 1.2s; }
-.hero-socials a:nth-child(4) { animation-delay: 1.3s; }
+/* Stagger animation for social icons */
+.hero-socials-corner a:nth-child(1) { animation-delay: 1.0s; }
+.hero-socials-corner a:nth-child(2) { animation-delay: 1.1s; }
+.hero-socials-corner a:nth-child(3) { animation-delay: 1.2s; }
+.hero-socials-corner a:nth-child(4) { animation-delay: 1.3s; }
 
-/* Hover effect for social icons */
-.hero-socials a:hover {
-    color: var(--text-primary); /* Brighten on hover */
-    transform: translateY(-4px); /* Slight lift effect */
+.hero-socials-corner a:hover {
+    color: var(--text-primary);
+    transform: scale(1.1);
 }
 
-/* Keyframe animation for fading in */
 @keyframes fadeIn {
     to {
         opacity: 1;
