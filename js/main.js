@@ -14,6 +14,7 @@ function initializePortfolio() {
     setupSkillsAnimation();
     setupFormHandling(); // Restore this function call
     setupScrollAnimations();
+    setupEnhancedAboutAnimations();
     setupLazyLoading();
 }
 
@@ -196,6 +197,58 @@ function setupScrollAnimations() {
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.card, .skill-item').forEach(el => observer.observe(el));
 }
+
+
+// Add this function after setupScrollAnimations()
+function setupEnhancedAboutAnimations() {
+    const aboutIntro = document.querySelector('.about-intro');
+    const timelineTitle = document.querySelector('.timeline-title');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    // About intro animation
+    const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                aboutObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    if (aboutIntro) aboutObserver.observe(aboutIntro);
+    
+    // Timeline title animation
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                titleObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    if (timelineTitle) titleObserver.observe(timelineTitle);
+    
+    // Timeline items staggered animation
+    const itemsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, Array.from(timelineItems).indexOf(entry.target) * 200);
+                itemsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    timelineItems.forEach(item => itemsObserver.observe(item));
+}
+
 
 // Lazy loading for images
 function setupLazyLoading() {
