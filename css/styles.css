@@ -1177,3 +1177,40 @@ footer {
         transform: translateX(0);
     }
 }
+
+/* === NEW HORIZONTAL SKILLS SCROLLER === */
+.skills-scroller {
+    max-width: 900px;
+    margin: 2rem auto;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+}
+
+.skills-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+
+.skill-item-logo {
+    padding: 15px 35px;
+    display: flex;
+    align-items: center;
+}
+
+.skill-item-logo i {
+    font-size: 5rem; /* Icon size */
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.skill-item-logo:hover i {
+    color: var(--text-primary);
+}
+
+@keyframes scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
