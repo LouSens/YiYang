@@ -16,6 +16,7 @@ function initializePortfolio() {
     setupScrollAnimations();
     setupEnhancedAboutAnimations();
     setupLazyLoading();
+    setupInfiniteScroller();
 }
 
 // Form handling with robust AJAX to gracefully handle FormSubmit's responses
@@ -265,6 +266,25 @@ function setupLazyLoading() {
         });
         document.querySelectorAll('img[loading="lazy"]').forEach(img => imageObserver.observe(img));
     }
+}
+
+
+// --- Add this new function to main.js ---
+function setupInfiniteScroller() {
+    const scrollers = document.querySelectorAll(".skills-scroller");
+
+    if (!scrollers.length) return;
+
+    scrollers.forEach(scroller => {
+        const scrollerInner = scroller.querySelector(".skills-list");
+        const scrollerContent = Array.from(scrollerInner.children);
+
+        scrollerContent.forEach(item => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute("aria-hidden", true);
+            scrollerInner.appendChild(duplicatedItem);
+        });
+    });
 }
 
 // Console easter egg
