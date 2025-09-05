@@ -269,13 +269,17 @@ function setupLazyLoading() {
 }
 
 
-// --- Add this new function to main.js ---
 function setupInfiniteScroller() {
     const scrollers = document.querySelectorAll(".skills-scroller");
 
-    if (!scrollers.length) return;
+    // If a user prefers reduced motion, stop here
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
 
     scrollers.forEach(scroller => {
+        scroller.setAttribute("data-animated", true);
+
         const scrollerInner = scroller.querySelector(".skills-list");
         const scrollerContent = Array.from(scrollerInner.children);
 
