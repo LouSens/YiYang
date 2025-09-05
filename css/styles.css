@@ -1177,3 +1177,78 @@ footer {
         transform: translateX(0);
     }
 }
+
+/* === NEW HERO SECTION STYLES === */
+
+/* Wrapper for slide-up text animation */
+.animated-text {
+    overflow: hidden; /* This is crucial for the slide-up effect */
+    padding-bottom: 0.25rem;
+}
+
+/* Initial state for animated text */
+.hero-content .animated-text h1,
+.hero-content .animated-text h2 {
+    transform: translateY(110%);
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+/* Stagger the animation delays */
+.hero-content .animated-text:nth-of-type(1) h1 {
+    animation-delay: 0.5s;
+}
+.hero-content .animated-text:nth-of-type(2) h2 {
+    animation-delay: 0.7s;
+}
+
+/* Keyframe animation for sliding up */
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Update button styles to accommodate icons */
+.cta-button {
+    display: inline-flex; /* Use flex to align text and icon */
+    align-items: center;
+    gap: 0.75rem; /* Space between text and icon */
+}
+
+/* Social icons container */
+.hero-socials {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 5rem; /* Space above the icons */
+}
+
+/* Individual social icon links */
+.hero-socials a {
+    color: var(--text-secondary); /* Default monochrome style */
+    font-size: 1.5rem;
+    transition: var(--transition);
+    opacity: 0; /* Start hidden for fade-in animation */
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger the animation for social icons */
+.hero-socials a:nth-child(1) { animation-delay: 1.0s; }
+.hero-socials a:nth-child(2) { animation-delay: 1.1s; }
+.hero-socials a:nth-child(3) { animation-delay: 1.2s; }
+.hero-socials a:nth-child(4) { animation-delay: 1.3s; }
+
+/* Hover effect for social icons */
+.hero-socials a:hover {
+    color: var(--text-primary); /* Brighten on hover */
+    transform: translateY(-4px); /* Slight lift effect */
+}
+
+/* Keyframe animation for fading in */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
