@@ -1178,7 +1178,7 @@ footer {
     }
 }
 
-/* === NEW HORIZONTAL SKILLS SCROLLER === */
+/* === NEW JAVASCRIPT-POWERED SKILLS SCROLLER === */
 .skills-scroller {
     max-width: 900px;
     margin: 2rem auto;
@@ -1187,30 +1187,39 @@ footer {
     mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
 
-.skills-track {
+.skills-list {
     display: flex;
+    flex-wrap: nowrap;
     width: max-content;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
     animation: scroll 30s linear infinite;
 }
 
-.skill-item-logo {
-    padding: 15px 35px;
+.skills-scroller[data-animated="true"] .skills-list {
+    animation: scroll 40s linear infinite;
+}
+
+.skills-list li {
     display: flex;
     align-items: center;
-}
-
-.skill-item-logo i {
-    font-size: 5rem; /* Icon size */
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--secondary-bg);
+    border-radius: 10px;
+    margin: 0 1rem;
     color: var(--text-secondary);
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
-.skill-item-logo:hover i {
-    color: var(--text-primary);
+.skills-list li i {
+    font-size: 2rem;
 }
 
 @keyframes scroll {
     to {
-        transform: translateX(-50%);
+        transform: translate(calc(-100% - 1rem * 10)); /* Adjust based on number of items and margin */
     }
 }
