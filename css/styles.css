@@ -1188,17 +1188,13 @@ footer {
 }
 
 .skills-list {
-    display: flex;
+    display: flex; /* This ensures the list is horizontal */
+    gap: 1rem;
     flex-wrap: nowrap;
     width: max-content;
     list-style: none;
     padding-left: 0;
     margin: 0;
-    animation: scroll 30s linear infinite;
-}
-
-.skills-scroller[data-animated="true"] .skills-list {
-    animation: scroll 40s linear infinite;
 }
 
 .skills-list li {
@@ -1218,8 +1214,3 @@ footer {
     font-size: 2rem;
 }
 
-@keyframes scroll {
-    to {
-        transform: translate(calc(-100% - 1rem * 10)); /* Adjust based on number of items and margin */
-    }
-}
