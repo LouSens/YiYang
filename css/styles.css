@@ -300,7 +300,7 @@ section {
   background-size: 300% 100%;
   background-position: 0% 0;
   z-index: -1;
-  animation: capsule-gradient-horizontal 7s linear infinite;
+  animation: capsule-gradient-horizontal 1000000000s linear infinite;
   background-repeat: repeat-x;
 }
 
