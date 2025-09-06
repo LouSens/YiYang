@@ -289,18 +289,16 @@ section {
   padding: 3px;
   background: linear-gradient(
     90deg,
-    #ffff00,
-    #ff8000,
-    #0080ff,
-    #ffff00,
-    #ff8000,
-    #0080ff,
-    #ffff00 /* repeat starting color for seamless wrap */
+    #ffff00 0%,
+    #ff8000 20%,
+    #0080ff 50%,
+    #ff8000 80%,
+    #ffff00 100%
   );
   background-size: 300% 100%;
   background-position: 0% 0;
   z-index: -1;
-  animation: capsule-gradient-horizontal 1000000000s linear infinite;
+  animation: capsule-gradient-horizontal 8s linear infinite;
   background-repeat: repeat-x;
 }
 
