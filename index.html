@@ -23,7 +23,7 @@
     
     <title>David Huang</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="stylesheet" href="css/styles.css">
     
@@ -33,73 +33,155 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Smooth gradient border animation moving from right to left */
-        @keyframes gradientShift {
+        /* Color cycle gradation keyframes */
+        @keyframes colorCycle {
             0% { 
-                background-position: 200% 0;
+                box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
+            }
+            25% { 
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.3), 0 0 60px rgba(255, 255, 0, 0.1);
+            }
+            75% { 
+                box-shadow: 0 0 20px rgba(128, 255, 0, 0.6), 0 0 40px rgba(128, 255, 0, 0.3), 0 0 60px rgba(128, 255, 0, 0.1);
             }
             100% { 
-                background-position: -200% 0;
+                box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
             }
         }
-        
-        .cta-button.primary.animated {
+
+        /* Apple Liquid Glass Effect for buttons */
+        .liquid-glass {
             position: relative;
-            border: none;
-            background: transparent;
-            padding: 0;
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            animation: colorCycle 4s ease-in-out infinite;
         }
-        
-        .cta-button.primary.animated::before {
+
+        .liquid-glass::before {
             content: '';
             position: absolute;
             top: -2px;
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(
-                90deg,
-                #ff0000 0%,
-                #ff8000 25%,
-                #ffff00 50%,
-                #0080ff 75%,
-                #ff0000 100%
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.3)
             );
-            background-size: 400% 100%;
-            border-radius: inherit;
+            border-radius: 18px;
             z-index: -1;
-            animation: gradientShift 4s linear infinite;
+            filter: blur(1px);
         }
-        
-        .cta-button.primary.animated::after {
+
+        .liquid-glass::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg-color, #000);
-            border-radius: inherit;
-            z-index: -1;
+            top: 1px;
+            left: 1px;
+            right: 1px;
+            height: 50%;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            border-radius: 14px 14px 0 0;
+            pointer-events: none;
         }
-        
-        /* Ensure the button text is properly positioned */
-        .cta-button.primary.animated {
-            background: var(--primary-color, #007bff);
+
+        .liquid-glass:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 128, 0.8), 
+                0 0 60px rgba(255, 0, 128, 0.4), 
+                0 0 90px rgba(255, 0, 128, 0.2),
+                0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Apply liquid glass to primary and project buttons */
+        .cta-button.primary.animated,
+        .project-link.liquid-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
-            padding: 24px 12px;
+            padding: 1rem 2rem;
             color: white;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            overflow: hidden;
+            animation: colorCycle 4s ease-in-out infinite;
+            position: relative;
         }
-        
-        .cta-button.primary.animated:hover {
+
+        .cta-button.primary.animated::before,
+        .project-link.liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.3)
+            );
+            border-radius: 18px;
+            z-index: -1;
+            filter: blur(1px);
+        }
+
+        .cta-button.primary.animated::after,
+        .project-link.liquid-glass::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            right: 1px;
+            height: 50%;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            border-radius: 14px 14px 0 0;
+            pointer-events: none;
+        }
+
+        .cta-button.primary.animated:hover,
+        .project-link.liquid-glass:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 128, 0.8), 
+                0 0 60px rgba(255, 0, 128, 0.4), 
+                0 0 90px rgba(255, 0, 128, 0.2),
+                0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        
+
+        /* Make sure text is above the pseudo-elements */
+        .cta-button.primary.animated span,
+        .project-link.liquid-glass span,
+        .project-link.liquid-glass i {
+            position: relative;
+            z-index: 1;
+        }
+
         /* Social icons in hero section - centered below buttons */
         .hero-social-icons {
             display: flex;
@@ -197,8 +279,12 @@
             <h1>AI Student & Future Innovator</h1>
             <h2>Exploring the frontiers of Artificial Intelligence</h2>
             <div class="hero-buttons">
-                <a href="#about" class="cta-button primary animated">Discover My Journey</a>
-                <a href="assets/CV_DAVID KURNIAWAN NEW.pdf" class="cta-button secondary" target="_blank">Download CV</a>
+                <a href="#about" class="cta-button primary animated liquid-glass">
+                    <span>Discover My Journey</span>
+                </a>
+                <a href="assets/CV_DAVID KURNIAWAN NEW.pdf" class="cta-button secondary liquid-glass" target="_blank">
+                    <span>Download CV</span>
+                </a>
             </div>
             
             <!-- Social Icons in Hero Section - Centered below buttons -->
@@ -296,11 +382,9 @@
                         <span class="tag">Web App</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/yourusername/neural-style-transfer" class="project-link" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7.45 2A13.5 13.5 0 0 0 1 14.85 13.5 13.5 0 0 0 8.55 22 14 14 0 0 0 16 20.92Z"></path>
-                            </svg>
-                            Code
+                        <a href="https://github.com/LouSens/Handwritten-Digit-Recognition" class="project-link liquid-glass" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Code</span>
                         </a>
                         <a href="https://yourusername.github.io/neural-style-transfer" class="project-link" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -320,7 +404,7 @@
                 </div>
                 <div class="project-content">
                     <h3>Real-Time Face Mask Detection</h3>
-                    <p>A deep learning model designed to detect whether individuals in a video stream are wearing a face mask. The model is built with TensorFlow and Keras and utilizes OpenCV for real-time video processing.</p>
+                    <p>A deep learning model designed to detect whether individuals in a video stream are wearing a face mask. The model is built with TensorFlow and Keras and utilizes OpenCV for real-time processing.</p>
                     <div class="project-tags">
                         <span class="tag">TensorFlow</span>
                         <span class="tag">Keras</span>
@@ -329,11 +413,9 @@
                         <span class="tag">Python</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/LouSens/Face-Mask-Detection" class="project-link" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7.45 2A13.5 13.5 0 0 0 1 14.85 13.5 13.5 0 0 0 8.55 22 14 14 0 0 0 16 20.92Z"></path>
-                            </svg>
-                            Code
+                        <a href="https://github.com/LouSens/Face-Mask-Detection" class="project-link liquid-glass" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Code</span>
                         </a>
                     </div>
                 </div>
@@ -352,11 +434,9 @@
                         <span class="tag">Fine-tuning</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/yourusername/ai-chatbot" class="project-link" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7.45 2A13.5 13.5 0 0 0 1 14.85 13.5 13.5 0 0 0 8.55 22 14 14 0 0 0 16 20.92Z"></path>
-                            </svg>
-                            Code
+                        <a href="https://github.com/yourusername/ai-chatbot" class="project-link liquid-glass" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>Code</span>
                         </a>
                     </div>
                 </div>
