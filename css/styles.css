@@ -281,7 +281,6 @@ section {
     z-index: 1;
 }
 
-/* Animated gradient border that moves horizontally */
 .capsule-glass-btn:before {
   content: "";
   position: absolute;
@@ -293,15 +292,18 @@ section {
     #ffff00,
     #ff8000,
     #0080ff,
-    #ffff00,    /* repeat the starting color here for seamlessness */
+    #ffff00,
     #ff8000,
-    #0080ff    /* and again, to stretch the repeat */
+    #0080ff,
+    #ffff00 /* repeat starting color for seamless wrap */
   );
-  background-size: 200% 100%; /* Twice as wide for seamless looping */
-  background-position: 100% 0;
+  background-size: 300% 100%;
+  background-position: 0% 0;
   z-index: -1;
   animation: capsule-gradient-horizontal 7s linear infinite;
+  background-repeat: repeat-x;
 }
+
 
 /* Keep your inner blur effect as-is */
 .capsule-glass-btn:after {
@@ -315,13 +317,14 @@ section {
   z-index: -1;
 }
 
-/* New keyframes for horizontal movement */
 @keyframes capsule-gradient-horizontal {
-  to {
+  from {
     background-position: 0% 0;
   }
+  to {
+    background-position: 100% 0;
+  }
 }
-
 
 /* Hover effect */
 .capsule-glass-btn:hover {
