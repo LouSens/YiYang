@@ -33,60 +33,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Color cycle gradation keyframes */
-        @keyframes colorCycle {
+        /* Sonic Labs Style Color Cycle Animation - Gradient Border Moving Right to Left */
+        @keyframes sonicColorCycle {
             0% { 
-                box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
-            }
-            25% { 
-                box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.1);
-            }
-            50% { 
-                box-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.3), 0 0 60px rgba(255, 255, 0, 0.1);
-            }
-            75% { 
-                box-shadow: 0 0 20px rgba(128, 255, 0, 0.6), 0 0 40px rgba(128, 255, 0, 0.3), 0 0 60px rgba(128, 255, 0, 0.1);
+                background-position: 100% 50%;
             }
             100% { 
-                box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
+                background-position: -100% 50%;
             }
         }
 
-        /* Apple Liquid Glass Effect for buttons */
-        .liquid-glass {
+        /* Enhanced buttons with Sonic Labs color cycle and Apple liquid glass */
+        .enhanced-button {
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 1rem 2rem;
+            border: none;
             color: white;
             text-decoration: none;
+            border-radius: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
             overflow: hidden;
-            animation: colorCycle 4s ease-in-out infinite;
+            z-index: 1;
         }
 
-        .liquid-glass::before {
+        /* Animated gradient border */
+        .enhanced-button::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                rgba(255, 255, 255, 0.3),
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.3)
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(
+                90deg,
+                #ff0000 0%,
+                #ff8000 25%,
+                #ffff00 50%,
+                #0080ff 75%,
+                #ff0000 100%
             );
-            border-radius: 18px;
+            background-size: 400% 100%;
+            border-radius: 19px;
             z-index: -1;
-            filter: blur(1px);
+            animation: sonicColorCycle 3s linear infinite;
         }
 
-        .liquid-glass::after {
+        /* Apple liquid glass effect */
+        .enhanced-button::after {
             content: '';
             position: absolute;
             top: 1px;
@@ -97,58 +96,61 @@
                 rgba(255, 255, 255, 0.25) 0%,
                 rgba(255, 255, 255, 0.05) 100%
             );
-            border-radius: 14px 14px 0 0;
+            border-radius: 15px 15px 0 0;
             pointer-events: none;
+            z-index: -1;
         }
 
-        .liquid-glass:hover {
+        .enhanced-button:hover {
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 
-                0 0 30px rgba(255, 0, 128, 0.8), 
-                0 0 60px rgba(255, 0, 128, 0.4), 
-                0 0 90px rgba(255, 0, 128, 0.2),
-                0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
         }
 
-        /* Apply liquid glass to primary and project buttons */
+        /* Apply enhanced styling to specific buttons */
         .cta-button.primary.animated,
-        .project-link.liquid-glass {
-            background: rgba(255, 255, 255, 0.1);
+        .project-link.enhanced {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 1rem 2rem;
+            border: none;
             color: white;
             text-decoration: none;
+            border-radius: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
             overflow: hidden;
-            animation: colorCycle 4s ease-in-out infinite;
-            position: relative;
+            z-index: 1;
         }
 
         .cta-button.primary.animated::before,
-        .project-link.liquid-glass::before {
+        .project-link.enhanced::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                rgba(255, 255, 255, 0.3),
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.3)
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(
+                90deg,
+                #ff0000 0%,
+                #ff8000 25%,
+                #ffff00 50%,
+                #0080ff 75%,
+                #ff0000 100%
             );
-            border-radius: 18px;
+            background-size: 400% 100%;
+            border-radius: 19px;
             z-index: -1;
-            filter: blur(1px);
+            animation: sonicColorCycle 3s linear infinite;
         }
 
         .cta-button.primary.animated::after,
-        .project-link.liquid-glass::after {
+        .project-link.enhanced::after {
             content: '';
             position: absolute;
             top: 1px;
@@ -159,27 +161,24 @@
                 rgba(255, 255, 255, 0.25) 0%,
                 rgba(255, 255, 255, 0.05) 100%
             );
-            border-radius: 14px 14px 0 0;
+            border-radius: 15px 15px 0 0;
             pointer-events: none;
+            z-index: -1;
         }
 
         .cta-button.primary.animated:hover,
-        .project-link.liquid-glass:hover {
+        .project-link.enhanced:hover {
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 
-                0 0 30px rgba(255, 0, 128, 0.8), 
-                0 0 60px rgba(255, 0, 128, 0.4), 
-                0 0 90px rgba(255, 0, 128, 0.2),
-                0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
         }
 
-        /* Make sure text is above the pseudo-elements */
+        /* Make sure text and icons are visible */
         .cta-button.primary.animated span,
-        .project-link.liquid-glass span,
-        .project-link.liquid-glass i {
+        .project-link.enhanced span,
+        .project-link.enhanced i {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* Social icons in hero section - centered below buttons */
@@ -279,10 +278,10 @@
             <h1>AI Student & Future Innovator</h1>
             <h2>Exploring the frontiers of Artificial Intelligence</h2>
             <div class="hero-buttons">
-                <a href="#about" class="cta-button primary animated liquid-glass">
+                <a href="#about" class="cta-button primary animated">
                     <span>Discover My Journey</span>
                 </a>
-                <a href="assets/CV_DAVID KURNIAWAN NEW.pdf" class="cta-button secondary liquid-glass" target="_blank">
+                <a href="assets/CV_DAVID KURNIAWAN NEW.pdf" class="cta-button secondary" target="_blank">
                     <span>Download CV</span>
                 </a>
             </div>
@@ -382,7 +381,7 @@
                         <span class="tag">Web App</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/LouSens/Handwritten-Digit-Recognition" class="project-link liquid-glass" target="_blank">
+                        <a href="https://github.com/LouSens/Handwritten-Digit-Recognition" class="project-link enhanced" target="_blank">
                             <i class="fab fa-github"></i>
                             <span>Code</span>
                         </a>
@@ -413,7 +412,7 @@
                         <span class="tag">Python</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/LouSens/Face-Mask-Detection" class="project-link liquid-glass" target="_blank">
+                        <a href="https://github.com/LouSens/Face-Mask-Detection" class="project-link enhanced" target="_blank">
                             <i class="fab fa-github"></i>
                             <span>Code</span>
                         </a>
@@ -434,7 +433,7 @@
                         <span class="tag">Fine-tuning</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/yourusername/ai-chatbot" class="project-link liquid-glass" target="_blank">
+                        <a href="https://github.com/yourusername/ai-chatbot" class="project-link enhanced" target="_blank">
                             <i class="fab fa-github"></i>
                             <span>Code</span>
                         </a>
