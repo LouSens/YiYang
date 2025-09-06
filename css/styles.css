@@ -1178,23 +1178,30 @@ footer {
     }
 }
 
-/* === NEW JAVASCRIPT-POWERED SKILLS SCROLLER === */
+/* === FINAL JAVASCRIPT-POWERED INFINITE SCROLLER === */
 .skills-scroller {
     max-width: 900px;
     margin: 2rem auto;
-    overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
     mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
 
+.skills-scroller[data-animated="true"] {
+    overflow: hidden;
+}
+
 .skills-list {
-    display: flex; /* This ensures the list is horizontal */
-    gap: 1rem;
+    display: flex;
     flex-wrap: nowrap;
     width: max-content;
     list-style: none;
     padding-left: 0;
     margin: 0;
+}
+
+/* This is the animation controlled by the JS */
+.skills-scroller[data-animated="true"] .skills-list {
+    animation: scroll 40s linear infinite;
 }
 
 .skills-list li {
@@ -1214,3 +1221,8 @@ footer {
     font-size: 2rem;
 }
 
+@keyframes scroll {
+    to {
+        transform: translate(-50%);
+    }
+}
