@@ -296,7 +296,7 @@ section {
     #ffff00,
     #ff8000,
     #0080ff,
-    #ffff00,
+    #ffff00
   );
   background-size: 300% 100%; /* Twice as wide for seamless looping */
   background-position: 100% 0;
