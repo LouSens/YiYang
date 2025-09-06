@@ -153,12 +153,11 @@ nav {
     width: 100%;
 }
 
-
 .nav-links.active {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 100%; /* Position it right below the header */
+    top: 100%;
     left: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.95);
@@ -175,7 +174,7 @@ nav {
 
 .nav-links a {
     padding: 1rem 0;
-    display: block; /* Make the whole area clickable */
+    display: block;
     width: 100%;
 }
 
@@ -190,8 +189,6 @@ nav {
 .mobile-menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
 }
-
-/* --- END OF CODE TO PASTE --- */
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
@@ -261,7 +258,78 @@ section {
     justify-content: center;
 }
 
-/* Updated CTA Button Styles with Apple Liquid Glass Effect */
+/* NEW CAPSULE GLASS BUTTON STYLES */
+.capsule-glass-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Animated gradient border that moves around the capsule */
+.capsule-glass-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 999px;
+    padding: 3px;
+    background: conic-gradient(
+        from 0deg,
+        #ffff00 0deg,
+        #ff8000 120deg,
+        #0080ff 240deg,
+        #ffff00 360deg
+    );
+    z-index: -1;
+    animation: capsule-gradient-spin 7s linear infinite;
+}
+
+/* Create the inner transparent area */
+.capsule-glass-btn::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: -1;
+}
+
+@keyframes capsule-gradient-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hover effect */
+.capsule-glass-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+}
+
+/* Make sure text and icons are above pseudo-elements */
+.capsule-glass-btn > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Regular button for non-enhanced buttons */
 .cta-button {
     display: inline-flex;
     align-items: center;
@@ -272,84 +340,17 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: 999px;
     transition: var(--transition);
     font-weight: 600;
     position: relative;
     overflow: hidden;
 }
 
-/* Liquid Glass Effect */
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        rgba(255, 255, 255, 0.3),
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.3)
-    );
-    border-radius: 18px;
-    z-index: -1;
-    filter: blur(1px);
-}
-
-.cta-button::after {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    height: 50%;
-    background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.25) 0%,
-        rgba(255, 255, 255, 0.05) 100%
-    );
-    border-radius: 14px 14px 0 0;
-    pointer-events: none;
-}
-
-/* Color Cycle Animation for both primary and secondary buttons */
-.cta-button.primary,
-.cta-button.secondary {
-    animation: colorCycle 4s ease-in-out infinite;
-}
-
-@keyframes colorCycle {
-    0% { 
-        box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
-    }
-    25% { 
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.1);
-    }
-    50% { 
-        box-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.3), 0 0 60px rgba(255, 255, 0, 0.1);
-    }
-    75% { 
-        box-shadow: 0 0 20px rgba(128, 255, 0, 0.6), 0 0 40px rgba(128, 255, 0, 0.3), 0 0 60px rgba(128, 255, 0, 0.1);
-    }
-    100% { 
-        box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3), 0 0 60px rgba(255, 0, 128, 0.1);
-    }
-}
-
 .cta-button:hover {
     transform: translateY(-2px);
     background: rgba(255, 255, 255, 0.15);
-    box-shadow: 
-        0 0 30px rgba(255, 0, 128, 0.8), 
-        0 0 60px rgba(255, 0, 128, 0.4), 
-        0 0 90px rgba(255, 0, 128, 0.2),
-        0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Make sure text is above pseudo-elements */
-.cta-button span {
-    position: relative;
-    z-index: 1;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
 }
 
 /* Section titles */
@@ -500,7 +501,7 @@ section {
     padding-top: 1rem;
 }
 
-/* Updated Project Link Styles with Liquid Glass Effect */
+/* Regular project link for Live Demo buttons */
 .project-link {
     display: inline-flex;
     align-items: center;
@@ -511,7 +512,7 @@ section {
     -webkit-backdrop-filter: blur(20px);
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: var(--transition);
     font-size: 0.9rem;
@@ -520,63 +521,11 @@ section {
     overflow: hidden;
 }
 
-/* Apply liquid glass and color cycle to Code buttons only */
-.project-link.liquid-glass {
-    animation: colorCycle 4s ease-in-out infinite;
-}
-
-.project-link.liquid-glass::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        rgba(255, 255, 255, 0.3),
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.3)
-    );
-    border-radius: 18px;
-    z-index: -1;
-    filter: blur(1px);
-}
-
-.project-link.liquid-glass::after {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    height: 50%;
-    background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.25) 0%,
-        rgba(255, 255, 255, 0.05) 100%
-    );
-    border-radius: 14px 14px 0 0;
-    pointer-events: none;
-}
-
 .project-link:hover {
     background: rgba(255, 255, 255, 0.15);
     color: var(--text-primary);
     transform: translateY(-2px);
-}
-
-.project-link.liquid-glass:hover {
-    box-shadow: 
-        0 0 30px rgba(255, 0, 128, 0.8), 
-        0 0 60px rgba(255, 0, 128, 0.4), 
-        0 0 90px rgba(255, 0, 128, 0.2),
-        0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Make sure text and icons are above pseudo-elements */
-.project-link span,
-.project-link i,
-.project-link svg {
-    position: relative;
-    z-index: 1;
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 .project-link svg {
@@ -584,6 +533,7 @@ section {
     height: 18px;
 }
 
+/* Rest of the existing styles remain the same... */
 /* Skills Section */
 .skills-container {
     display: grid;
@@ -872,7 +822,7 @@ footer {
         align-items: center;
     }
     
-    .cta-button {
+    .capsule-glass-btn {
         width: 100%;
         max-width: 300px;
         justify-content: center;
@@ -995,7 +945,7 @@ footer {
         border: 2px solid #fff;
     }
     
-    .cta-button {
+    .capsule-glass-btn {
         border: 2px solid #fff;
     }
 }
@@ -1249,4 +1199,34 @@ footer {
     padding: 1rem;
     background: var(--gradient-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.skills-list li:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.skills-list i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skills-list span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
