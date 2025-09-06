@@ -310,27 +310,7 @@ function setupInfiniteScroller() {
     // Add the attribute that triggers the CSS animation
     scroller.setAttribute("data-animated", "true");
     
-    // Optional: Add pause/resume functionality
-    let isPaused = false;
-    
-    scroller.addEventListener('mouseenter', () => {
-        isPaused = true;
-    });
-    
-    scroller.addEventListener('mouseleave', () => {
-        isPaused = false;
-    });
-    
-    // Optional: Add touch support for mobile
-    scroller.addEventListener('touchstart', () => {
-        isPaused = true;
-    });
-    
-    scroller.addEventListener('touchend', () => {
-        setTimeout(() => {
-            isPaused = false;
-        }, 2000); // Resume after 2 seconds
-    });
+    console.log("Infinite scroller initialized successfully!");
 }
 
 // Enhanced setup function to ensure proper initialization
