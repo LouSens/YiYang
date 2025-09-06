@@ -295,13 +295,12 @@ section {
     #ff8000,
     #ffff00,
     #ff8000,
-    #0080ff,
-    #ff8000
+    #0080ff
   );
   background-size: 300% 100%;
   background-position: 0% 0;
   z-index: -1;
-  animation: capsule-gradient-horizontal 8s linear infinite;
+  animation: capsule-gradient-horizontal 7s linear infinite;
   background-repeat: repeat-x;
 }
 
