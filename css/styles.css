@@ -289,12 +289,13 @@ section {
   padding: 3px;
   background: linear-gradient(
     90deg,
-    #ffff00 0%,
-    #ff8000 20%,
-    #0080ff 40%,
-    #ff8000 60%,
-    #ffff00 80%,
-    #ff8000 100%
+    #ffff00,
+    #ff8000,
+    #0080ff,
+    #ff8000,
+    #ffff00,
+    #ff8000,
+    #0080ff
   );
   background-size: 300% 100%;
   background-position: 0% 0;
