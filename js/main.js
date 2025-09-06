@@ -17,6 +17,7 @@ function initializePortfolio() {
     setupEnhancedAboutAnimations();
     setupLazyLoading();
     setupInfiniteScroller();
+    initializeSkillsScroller();
 }
 
 // Form handling with robust AJAX to gracefully handle FormSubmit's responses
@@ -269,9 +270,14 @@ function setupLazyLoading() {
 }
 
 
-// --- Replace your old scroller function with this one ---
+// Enhanced infinite scroller function - replace your existing one
 function setupInfiniteScroller() {
     const scroller = document.querySelector(".skills-scroller");
+    
+    if (!scroller) {
+        console.warn("Skills scroller element not found");
+        return;
+    }
 
     // If a user has 'prefers-reduced-motion' on, we don't play the animation
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -280,7 +286,19 @@ function setupInfiniteScroller() {
 
     // Get the list of skills
     const scrollerInner = scroller.querySelector(".skills-list");
+    
+    if (!scrollerInner) {
+        console.warn("Skills list element not found");
+        return;
+    }
+
     const scrollerContent = Array.from(scrollerInner.children);
+
+    // Only proceed if we have content
+    if (scrollerContent.length === 0) {
+        console.warn("No skills found to animate");
+        return;
+    }
 
     // Duplicate the items and add them to the list
     scrollerContent.forEach(item => {
@@ -291,7 +309,42 @@ function setupInfiniteScroller() {
     
     // Add the attribute that triggers the CSS animation
     scroller.setAttribute("data-animated", "true");
+    
+    // Optional: Add pause/resume functionality
+    let isPaused = false;
+    
+    scroller.addEventListener('mouseenter', () => {
+        isPaused = true;
+    });
+    
+    scroller.addEventListener('mouseleave', () => {
+        isPaused = false;
+    });
+    
+    // Optional: Add touch support for mobile
+    scroller.addEventListener('touchstart', () => {
+        isPaused = true;
+    });
+    
+    scroller.addEventListener('touchend', () => {
+        setTimeout(() => {
+            isPaused = false;
+        }, 2000); // Resume after 2 seconds
+    });
 }
+
+// Enhanced setup function to ensure proper initialization
+function initializeSkillsScroller() {
+    // Wait for fonts and icons to load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupInfiniteScroller);
+    } else {
+        // Use a small delay to ensure all icons are loaded
+        setTimeout(setupInfiniteScroller, 100);
+    }
+}
+
+
 
 // Console easter egg
 console.log("Welcome to the portfolio!");
