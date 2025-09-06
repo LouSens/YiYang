@@ -293,16 +293,15 @@ section {
     #ffff00,
     #ff8000,
     #0080ff,
-    #ffff00,
+    #ffff00,    /* repeat the starting color here for seamlessness */
     #ff8000,
     #0080ff,
-    #ffff00
+    #ffff00      /* and again, to stretch the repeat */
   );
-  background-size: 300% 100%; /* Twice as wide for seamless looping */
+  background-size: 200% 100%; /* Twice as wide for seamless looping */
   background-position: 100% 0;
   z-index: -1;
   animation: capsule-gradient-horizontal 7s linear infinite;
-  will-change: background-position;
 }
 
 /* Keep your inner blur effect as-is */
