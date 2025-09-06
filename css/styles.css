@@ -295,8 +295,7 @@ section {
     #0080ff,
     #ffff00,    /* repeat the starting color here for seamlessness */
     #ff8000,
-    #0080ff,
-    #ffff00      /* and again, to stretch the repeat */
+    #0080ff    /* and again, to stretch the repeat */
   );
   background-size: 200% 100%; /* Twice as wide for seamless looping */
   background-position: 100% 0;
