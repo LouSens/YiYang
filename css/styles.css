@@ -290,18 +290,19 @@ section {
   padding: 3px;
   background: linear-gradient(
     90deg,
-    #ffff00,
-    #ff8000,
-    #0080ff,
-    #ffff00,    /* repeat the starting color here for seamlessness */
-    #ff8000,
-    #0080ff,
-    #ffff00      /* and again, to stretch the repeat */
+    #ffff00 0%,
+    #ff8000 16.6%,
+    #0080ff 33.3%,
+    #ffff00 50%,
+    #ff8000 66.6%,
+    #0080ff 83.3%,
+    #ffff00 100%
   );
-  background-size: 200% 100%; /* Twice as wide for seamless looping */
+  background-size: 300% 100%; /* Twice as wide for seamless looping */
   background-position: 100% 0;
   z-index: -1;
   animation: capsule-gradient-horizontal 7s linear infinite;
+  will-change: background-position;
 }
 
 /* Keep your inner blur effect as-is */
