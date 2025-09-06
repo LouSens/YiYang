@@ -1331,46 +1331,6 @@ footer {
     }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    .skills-list li {
-        border: 2px solid var(--text-primary);
-        background: var(--primary-bg);
-    }
-    
-    .skills-list li i,
-    .skills-list li span {
-        color: var(--text-primary);
-    }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    .skills-scroller[data-animated="true"] .skills-list {
-        animation: none;
-    }
-    
-    .skills-list li:hover {
-        transform: none;
-    }
-    
-    .skills-list li:hover i {
-        transform: none;
-    }
-}
-
-/* Loading state for skills */
-.skills-list li.loading {
-    background: var(--loading-skeleton);
-    animation: loading 1.5s ease-in-out infinite;
-}
-
-/* Accessibility improvements */
-.skills-list li:focus-visible {
-    outline: 2px solid var(--text-primary);
-    outline-offset: 2px;
-}
-
 /* Add subtle glow effect */
 .skills-list li::before {
     content: '';
@@ -1387,4 +1347,19 @@ footer {
 
 .skills-list li:hover::before {
     opacity: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .skills-scroller[data-animated="true"] .skills-list {
+        animation: none;
+    }
+    
+    .skills-list li:hover {
+        transform: none;
+    }
+    
+    .skills-list li:hover i {
+        transform: none;
+    }
 }
