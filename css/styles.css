@@ -281,40 +281,45 @@ section {
     z-index: 1;
 }
 
-/* Animated gradient border that moves around the capsule */
-.capsule-glass-btn::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 999px;
-    padding: 3px;
-    background: conic-gradient(
-        from 0deg,
-        #ffff00 0deg,
-        #ff8000 120deg,
-        #0080ff 240deg,
-        #ffff00 360deg
-    );
-    z-index: -1;
-    animation: capsule-gradient-spin 7s linear infinite;
+/* Animated gradient border that moves horizontally */
+.capsule-glass-btn:before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  padding: 3px;
+  background: linear-gradient(
+    90deg,
+    #fffF00 0%,
+    #ff8000 25%,
+    #0080ff 50%,
+    #fffF00 75%,
+    #ff8000 100%
+  );
+  background-size: 200% 100%; /* Twice as wide for seamless looping */
+  background-position: 100% 0;
+  z-index: -1;
+  animation: capsule-gradient-horizontal 7s linear infinite;
 }
 
-/* Create the inner transparent area */
-.capsule-glass-btn::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    border-radius: 999px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    z-index: -1;
+/* Keep your inner blur effect as-is */
+.capsule-glass-btn:after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: -1;
 }
 
-@keyframes capsule-gradient-spin {
-    to {
-        transform: rotate(360deg);
-    }
+/* New keyframes for horizontal movement */
+@keyframes capsule-gradient-horizontal {
+  to {
+    background-position: 0% 0;
+  }
+}
 }
 
 /* Hover effect */
