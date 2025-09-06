@@ -287,6 +287,8 @@ section {
   inset: -2px;
   border-radius: 999px;
   padding: 3px;
+  will-change: background-position;
+  transform: translateZ(0);
   background: linear-gradient(
     90deg,
     #ffff00,
