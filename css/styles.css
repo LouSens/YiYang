@@ -290,11 +290,13 @@ section {
   padding: 3px;
   background: linear-gradient(
     90deg,
-    #fffF00 0%,
-    #ff8000 25%,
-    #0080ff 50%,
-    #fffF00 75%,
-    #ff8000 100%
+    #ffff00,
+    #ff8000,
+    #0080ff,
+    #ffff00,    /* repeat the starting color here for seamlessness */
+    #ff8000,
+    #0080ff,
+    #ffff00      /* and again, to stretch the repeat */
   );
   background-size: 200% 100%; /* Twice as wide for seamless looping */
   background-position: 100% 0;
