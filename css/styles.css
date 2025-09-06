@@ -1135,13 +1135,13 @@ footer {
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
-    margin-right: 3.5rem;
-    margin-left: 2rem;
+    margin-right: auto;
+    margin-left: 3rem;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
-    margin-left: 3.5rem;
-    margin-right: 2rem;
+    margin-left: auto;
+    margin-right: 3rem;
 }
 
 .timeline-content:hover {
@@ -1230,4 +1230,42 @@ footer {
     100% {
         transform: translateX(-50%);
     }
+}
+
+@media (max-width: 900px) {
+  .about-container {
+    gap: 2rem;
+  }
+  .profile-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-items: center;
+    text-align: center;
+  }
+  .intro-text {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    padding: 2rem 0;
+  }
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+  .timeline-dot {
+    left: 20px;
+    transform: none;
+  }
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+  }
+  .timeline-content {
+    width: 100% !important;
+    margin: 0 0 1.5rem 48px !important;
+    padding: 1.5rem;
+  }
 }
