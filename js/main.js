@@ -269,26 +269,28 @@ function setupLazyLoading() {
 }
 
 
+// --- Replace your old scroller function with this one ---
 function setupInfiniteScroller() {
-    const scrollers = document.querySelectorAll(".skills-scroller");
+    const scroller = document.querySelector(".skills-scroller");
 
-    // If a user prefers reduced motion, stop here
+    // If a user has 'prefers-reduced-motion' on, we don't play the animation
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
     }
 
-    scrollers.forEach(scroller => {
-        scroller.setAttribute("data-animated", true);
+    // Get the list of skills
+    const scrollerInner = scroller.querySelector(".skills-list");
+    const scrollerContent = Array.from(scrollerInner.children);
 
-        const scrollerInner = scroller.querySelector(".skills-list");
-        const scrollerContent = Array.from(scrollerInner.children);
-
-        scrollerContent.forEach(item => {
-            const duplicatedItem = item.cloneNode(true);
-            duplicatedItem.setAttribute("aria-hidden", true);
-            scrollerInner.appendChild(duplicatedItem);
-        });
+    // Duplicate the items and add them to the list
+    scrollerContent.forEach(item => {
+        const duplicatedItem = item.cloneNode(true);
+        duplicatedItem.setAttribute("aria-hidden", true); // Important for accessibility
+        scrollerInner.appendChild(duplicatedItem);
     });
+    
+    // Add the attribute that triggers the CSS animation
+    scroller.setAttribute("data-animated", "true");
 }
 
 // Console easter egg
