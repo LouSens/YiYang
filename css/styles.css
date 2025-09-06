@@ -1178,65 +1178,213 @@ footer {
     }
 }
 
-/* === FINAL JAVASCRIPT-POWERED INFINITE SCROLLER === */
-.skills-scroller {
-    max-width: 900px;
-    margin: 2rem auto;
-    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+/* Enhanced Skills Section - Add this to your existing CSS */
+
+/* Skills Section */
+#skills {
+    padding: 6rem 2rem;
+    overflow: hidden; /* Prevent horizontal overflow */
 }
 
-.skills-scroller[data-animated="true"] {
+.skills-scroller {
+    width: 100%;
     overflow: hidden;
+    mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
+    -webkit-mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
 }
 
 .skills-list {
     display: flex;
-    flex-wrap: nowrap;
-    width: max-content;
+    gap: 2rem;
     list-style: none;
-    padding-left: 0;
     margin: 0;
-}
-
-/* === FINAL, CORRECT INFINITE SCROLLER STYLES === */
-.skills-scroller {
-    max-width: 900px;
-    margin: 2rem auto;
-    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-}
-
-.skills-scroller .skills-list {
-    padding-left: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: nowrap;
+    padding: 0;
     width: max-content;
-}
-
-/* This is the class the JavaScript will add to start the animation */
-.skills-scroller[data-animated="true"] .skills-list {
-    animation: scroll 40s linear infinite;
 }
 
 .skills-list li {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    margin: 0 0.5rem;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    white-space: nowrap;
+    justify-content: center;
+    min-width: 120px;
+    padding: 1.5rem 1rem;
+    background: var(--gradient-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.skills-list li:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .skills-list li i {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.skills-list li:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.skills-list li span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.skills-list li:hover span {
+    color: var(--text-primary);
+}
+
+/* Infinite scroll animation */
+.skills-scroller[data-animated="true"] .skills-list {
+    animation: scroll 30s linear infinite;
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause animation on hover */
+.skills-scroller[data-animated="true"]:hover .skills-list {
+    animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skills-list {
+        gap: 1.5rem;
+    }
+    
+    .skills-list li {
+        min-width: 100px;
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .skills-list li i {
+        font-size: 2rem;
+    }
+    
+    .skills-list li span {
+        font-size: 0.8rem;
+    }
+    
+    /* Faster animation on mobile for better UX */
+    .skills-scroller[data-animated="true"] .skills-list {
+        animation-duration: 25s;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-list {
+        gap: 1rem;
+    }
+    
+    .skills-list li {
+        min-width: 80px;
+        padding: 1rem 0.6rem;
+    }
+    
+    .skills-list li i {
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .skills-list li span {
+        font-size: 0.75rem;
+    }
+    
+    /* Even faster on very small screens */
+    .skills-scroller[data-animated="true"] .skills-list {
+        animation-duration: 20s;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .skills-list li {
+        border: 2px solid var(--text-primary);
+        background: var(--primary-bg);
+    }
+    
+    .skills-list li i,
+    .skills-list li span {
+        color: var(--text-primary);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .skills-scroller[data-animated="true"] .skills-list {
+        animation: none;
+    }
+    
+    .skills-list li:hover {
+        transform: none;
+    }
+    
+    .skills-list li:hover i {
+        transform: none;
+    }
+}
+
+/* Loading state for skills */
+.skills-list li.loading {
+    background: var(--loading-skeleton);
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+/* Accessibility improvements */
+.skills-list li:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+}
+
+/* Add subtle glow effect */
+.skills-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.skills-list li:hover::before {
+    opacity: 1;
 }
